@@ -1,0 +1,3 @@
+Example:
+    yo metalsmith
+    yo metalsmith [--skip-install] [--skip-welcome-message]
