@@ -1,28 +1,28 @@
 {
   "name": "generator-metalsmith",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/hariadi/generator-metalsmith",
   "description": "Yeoman generator for Metalsmith",
   "author": {
     "name": "Hariadi Hinta",
     "url": "https://github.com/hariadi"
   },
-  "license": "ISC",
+  "license": "MIT",
   "main": "app/index.js",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/hariadi/generator-metalsmith.git"
-	},
-	"bugs": {
-		"url": "https://github.com/hariadi/generator-metalsmith/issues"
-	},
+    "type": "git",
+    "url": "https://github.com/hariadi/generator-metalsmith.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hariadi/generator-metalsmith/issues"
+  },
 
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-		"test": "mocha --reporter spec"
-	},
+    "test": "mocha --reporter spec"
+  },
   "files": [
     "app"
   ],
@@ -37,10 +37,10 @@
     "yo": ">=1.0.0"
   },
   "keywords": [
-		"yeoman-generator",
-		"metalsmith",
-		"generator",
-		"static",
-		"site"
-	]
+    "yeoman-generator",
+    "metalsmith",
+    "generator",
+    "static",
+    "site"
+  ]
 }
