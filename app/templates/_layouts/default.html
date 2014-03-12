@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title><%= _.capitalize(msTitle) %> - {{ title }}</title>
+</head>
+<body>
+
+  <h2>Blog Posts</h2>
+
+  {% if articles.length %}
+  {% for article in articles %}
+
+  <h2><a href="{{ article.path }}/index.html">{{ article.title }}</a></h2>
+  <time>{{ article.date | date('Y-m-d') }}</time>
+
+  {% endfor %}
+  {% endif %}
+
+</body>
+</html>
