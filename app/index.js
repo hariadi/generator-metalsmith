@@ -9,12 +9,12 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.on('end', function () {
-    	this.installDependencies({
-    		skipInstall: this.options['skip-install'] || this.options['s'],
-    		callback: function () {
+      this.installDependencies({
+        skipInstall: this.options['skip-install'] || this.options['s'],
+        callback: function () {
           this.spawnCommand('make', ['build']);
         }.bind(this)
-    	});
+      });
     });
 
   },
@@ -23,10 +23,9 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     var done = this.async();
 
     if (!this.options['skip-welcome-message'] || !this.options['w']) {
-    	this.log(this.yeoman);
+      this.log(this.yeoman);
+      this.log(chalk.magenta('You\'re using the fantastic Metalsmith generator.'));
     }
-
-    this.log(chalk.magenta('You\'re using the fantastic Metalsmith generator.'));
 
     /*
     TODO:
@@ -35,13 +34,13 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     */
 
     var prompts = [{
-      type		: 'input',
-      name		: 'msTitle',
+      type    : 'input',
+      name    : 'msTitle',
       message : 'Site Title',
       default : this.appname
     }, {
-      type		: 'input',
-      name		: 'msDesc',
+      type    : 'input',
+      name    : 'msDesc',
       message : 'Site Description',
       default : 'My Metalsmith-Powered Site'
     }, {
