@@ -10,7 +10,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
 
     this.on('end', function () {
       this.installDependencies({
-        skipInstall: this.options['skip-install'] || this.options['s'],
+        skipInstall: this.options['skip-install'] || this.options.s,
         callback: function () {
           this.spawnCommand('make', ['build']);
         }.bind(this)
@@ -24,7 +24,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
   askFor: function () {
     var done = this.async();
 
-    if (!this.options['skip-welcome-message'] || !this.options['w']) {
+    if (!this.options['skip-welcome-message'] || !this.options.w) {
       this.log(this.yeoman);
       this.log(chalk.magenta('You\'re using the fantastic Metalsmith generator.'));
     }
@@ -32,12 +32,10 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     var plugins = this.metalsmith.plugins;
     var choices = [];
     for (var plugin in plugins) {
-      if(plugins.hasOwnProperty(plugin)){
+      if (plugins.hasOwnProperty(plugin)) {
         choices.push({ name: plugin, checked: true });
       }
     }
-
-
 
     var prompts = [{
       type    : 'input',
@@ -50,14 +48,14 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       message : 'Site Description',
       default : 'My Metalsmith-Powered Site'
     }, {
-      type    : "input",
-      name    : "msAuthor",
-      message : "Author name",
+      type    : 'input',
+      name    : 'msAuthor',
+      message : 'Author name',
       default : this.user.git.username || 'Metal Smith'
     }, {
-      type    : "input",
-      name    : "msGithubUser",
-      message : "Would you mind telling me your username on Github?",
+      type    : 'input',
+      name    : 'msGithubUser',
+      message : 'Would you mind telling me your username on Github?',
       default : process.env.username || 'metalsmith'
     }, {
       type: 'checkbox',
@@ -73,7 +71,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
         name: 'swig',
         checked: true
       }, 'handlebars'],
-      when : function( answers ){
+      when : function (answers) {
         return answers.msPlugins.indexOf('metalsmith-templates') > -1;
       }
     }, {
@@ -81,28 +79,32 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       message: 'What should a permalink look like?',
       name: 'permalinksPattern',
       default : ':title',
-      when : function( answers ){
+      when : function (answers) {
         return answers.msPlugins.indexOf('metalsmith-permalinks') > -1;
       }
     }];
 
     this.prompt(prompts, function (answers) {
 
-      for (var key in answers) {
-        if (answers.hasOwnProperty(key)) {
-          this[key] = answers[key];
-        }
-      }
-
-      var deps = this._.object(answers.msPlugins.map(function(plugin) {
-        return plugin.replace('metalsmith-', '')
-      }), answers.msPlugins.map(function() {
-        return true
+      var deps = this._.object(answers.msPlugins.map(function (plugin) {
+        return plugin.replace('metalsmith-', '');
+      }), answers.msPlugins.map(function () {
+        return true;
       }));
 
-      for (var key in deps) {
-        if (deps.hasOwnProperty(key)) {
-          this[key] = deps[key];
+      for (var key in answers) {
+        if (answers.hasOwnProperty(key)) {
+          if (key === 'msPlugins') {
+
+            for (var pkg in deps) {
+              if (deps.hasOwnProperty(pkg)) {
+                this[pkg] = deps[pkg];
+              }
+            }
+
+          } else {
+            this[key] = answers[key];
+          }
         }
       }
 

@@ -43,7 +43,7 @@ describe('metalsmith generator', function () {
         'metalsmith-markdown',
         'metalsmith-permalinks',
         'metalsmith-collections'
-        ],
+      ],
       templateEngine: 'swig',
       permalinksPattern: ':title',
     });
