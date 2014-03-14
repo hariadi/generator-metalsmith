@@ -10,14 +10,14 @@
     "type": "git",
     "url": "https://github.com/<%= msGithubUser %>/<%= _.slugify(msTitle) %>"
   },
-  "dependencies": {
-    "metalsmith-ignore": "^0.1.2",
-    "metalsmith-drafts": "0.0.1",
+  "dependencies": {<% if(ignore){ %>
+    "metalsmith-ignore": "^0.1.2",<% } %><% if(drafts){ %>
+    "metalsmith-drafts": "0.0.1",<% } %><% if(templates){ %>
     "metalsmith-templates": "^0.3.0",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-permalinks": "^0.2.0",
-    "metalsmith-collections": "^0.1.0",
-    "swig": "^1.3.2",
+    "<%= templateEngine %>": "*",<% } %><% if(markdown){ %>
+    "metalsmith-markdown": "^0.2.1",<% } %><% if(permalinks){ %>
+    "metalsmith-permalinks": "^0.2.0",<% } %><% if(collections){ %>
+    "metalsmith-collections": "^0.1.0",<% } %>
     "metalsmith": "^0.3.0"
   }
 }

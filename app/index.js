@@ -17,6 +17,8 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       });
     });
 
+    this.metalsmith = require('../metalsmith.json');
+
   },
 
   askFor: function () {
@@ -27,11 +29,15 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       this.log(chalk.magenta('You\'re using the fantastic Metalsmith generator.'));
     }
 
-    /*
-    TODO:
-    1. build type
-    2. metalsmith-templates engine
-    */
+    var plugins = this.metalsmith.plugins;
+    var choices = [];
+    for (var plugin in plugins) {
+      if(plugins.hasOwnProperty(plugin)){
+        choices.push({ name: plugin, checked: true });
+      }
+    }
+
+
 
     var prompts = [{
       type    : 'input',
@@ -53,6 +59,31 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       name    : "msGithubUser",
       message : "Would you mind telling me your username on Github?",
       default : process.env.username || 'metalsmith'
+    }, {
+      type: 'checkbox',
+      name: 'msPlugins',
+      message: 'Which plugins do you want to use?',
+      choices: choices
+    }, {
+      type: 'list',
+      message: 'Which template engine do you want to use?',
+      name: 'templateEngine',
+      //TODO: https://github.com/visionmedia/consolidate.js#supported-template-engines
+      choices: [{
+        name: 'swig',
+        checked: true
+      }, 'handlebars'],
+      when : function( answers ){
+        return answers.msPlugins.indexOf('metalsmith-templates') > -1;
+      }
+    }, {
+      type: 'input',
+      message: 'What should a permalink look like?',
+      name: 'permalinksPattern',
+      default : ':title',
+      when : function( answers ){
+        return answers.msPlugins.indexOf('metalsmith-permalinks') > -1;
+      }
     }];
 
     this.prompt(prompts, function (answers) {
@@ -63,6 +94,23 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
         }
       }
 
+      var deps = this._.object(answers.msPlugins.map(function(plugin) {
+        return plugin.replace('metalsmith-', '')
+      }), answers.msPlugins.map(function() {
+        return true
+      }));
+
+      for (var key in deps) {
+        if (deps.hasOwnProperty(key)) {
+          this[key] = deps[key];
+        }
+      }
+
+      //this.deps = this.metalsmith.plugins;
+
+      console.log(this);
+
+
       done();
     }.bind(this));
   },
@@ -72,8 +120,12 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
   },
 
   layouts: function () {
+
+    var prefix = (this.templateEngine === 'swig') ? '' : this.templateEngine + '-';
+
     this.mkdir('_layouts');
-    this.directory('_layouts', '_layouts');
+    this.template('_layouts/' + prefix + 'default.html', '_layouts/default.html');
+    this.template('_layouts/' + prefix + 'post.html', '_layouts/post.html');
   },
 
   posts: function () {
@@ -85,10 +137,19 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     this.copy('gitignore', '.gitignore');
   },
 
-  app: function () {
-    this.copy('_package.json', 'package.json');
-    this.copy('_metalsmith.json', 'metalsmith.json');
+  package: function () {
+    this.template('_package.json', 'package.json');
+  },
+
+  metalsmith: function () {
+    this.template('_metalsmith.json', 'metalsmith.json');
+  },
+
+  makefile: function () {
     this.copy('Makefile', 'Makefile');
+  },
+
+  readme: function () {
     this.copy('README.md', 'README.md');
   },
 
