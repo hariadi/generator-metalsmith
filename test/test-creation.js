@@ -32,10 +32,20 @@ describe('metalsmith generator', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'msTitle': 'Metalsmith Blog',
-      'msDesc': 'My Metalsmith-Powered Site',
-      'msAuthor': 'Metal Smith',
-      'msGithubUser': 'metalsmith',
+      msTitle: 'Metalsmith Blog',
+      msDesc: 'My Metalsmith-Powered Site',
+      msAuthor: 'Metal Smith',
+      msGithubUser: 'metalsmith',
+      msPlugins: [
+        'metalsmith-ignore',
+        'metalsmith-drafts',
+        'metalsmith-templates',
+        'metalsmith-markdown',
+        'metalsmith-permalinks',
+        'metalsmith-collections'
+        ],
+      templateEngine: 'swig',
+      permalinksPattern: ':title',
     });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {

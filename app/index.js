@@ -68,7 +68,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       type: 'list',
       message: 'Which template engine do you want to use?',
       name: 'templateEngine',
-      //TODO: https://github.com/visionmedia/consolidate.js#supported-template-engines
+      //TODO: support https://github.com/visionmedia/consolidate.js#supported-template-engines
       choices: [{
         name: 'swig',
         checked: true
@@ -105,11 +105,6 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
           this[key] = deps[key];
         }
       }
-
-      //this.deps = this.metalsmith.plugins;
-
-      console.log(this);
-
 
       done();
     }.bind(this));
