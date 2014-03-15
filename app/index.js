@@ -1,7 +1,6 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
 
 var MetalsmithGenerator = yeoman.generators.Base.extend({
 
@@ -26,7 +25,6 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
 
     if (!this.options['skip-welcome-message'] || !this.options.w) {
       this.log(this.yeoman);
-      this.log(chalk.magenta('You\'re using the fantastic Metalsmith generator.'));
     }
 
     var plugins = this.metalsmith.plugins;
