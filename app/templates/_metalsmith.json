@@ -5,26 +5,26 @@
     "title": "<%= _.capitalize(msTitle) %>",
     "description": "<%= msDesc %>"
   },
-  "plugins": {
+  "plugins": {<% if(ignore){ %>
     "metalsmith-ignore": [
       "_drafts/*",
       "_posts/index.md"
-    ],
-    "metalsmith-drafts": {},
-    "metalsmith-markdown": {},
+    ],<% } %><% if(drafts){ %>
+    "metalsmith-drafts": {},<% } %><% if(markdown){ %>
+    "metalsmith-markdown": {},<% } %><% if(permalinks){ %>
     "metalsmith-permalinks": {
-      "pattern": ":title"
-    },
+      "pattern": "<%= permalinksPattern %>"
+    },<% } %><% if(collections){ %>
     "metalsmith-collections": {
        "articles": {
         "pattern": "*.md",
         "sortBy": "date",
         "reverse": true
       }
-    },
+    },<% } %><% if(templates){ %>
     "metalsmith-templates": {
-      "engine": "swig",
+      "engine": "<%= templateEngine %>",
       "directory": "_layouts"
-    }
+    }<% } %>
   }
 }
