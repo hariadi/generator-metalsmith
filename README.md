@@ -33,12 +33,12 @@ The following directory structure is generated after running `yo metalsmith`:
 
     .
     ├── .gitignore
-    ├── .yo-rc.json
     ├── Makefile
     ├── metalsmith.json
     ├── package.json
     ├── README.md
     ├── _layouts
+    │   ├── defaul.html
     │   └── post.html
     ├── _posts
     │   ├── 2012-08-20-first-post.md
