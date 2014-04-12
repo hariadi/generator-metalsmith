@@ -1,4 +1,4 @@
-# generator-metalsmith [![Build Status](https://travis-ci.org/hariadi/generator-metalsmith.png)](https://travis-ci.org/hariadi/generator-metalsmith)
+# generator-metalsmith [![Build Status](https://travis-ci.org/hariadi/generator-metalsmith.svg)](https://travis-ci.org/hariadi/generator-metalsmith)
 
 > [Yeoman](http://yeoman.io) generator for [Metalsmith](http://metalsmith.io)
 
