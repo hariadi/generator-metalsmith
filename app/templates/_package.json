@@ -13,11 +13,11 @@
   "dependencies": {<% if(ignore){ %>
     "metalsmith-ignore": "^0.1.2",<% } %><% if(drafts){ %>
     "metalsmith-drafts": "0.0.1",<% } %><% if(templates){ %>
-    "metalsmith-templates": "^0.4.0",
+    "metalsmith-templates": "^0.5.0",
     "<%= templateEngine %>": "<%= metalsmith.engine[templateEngine] %>",<% } %><% if(markdown){ %>
     "metalsmith-markdown": "^0.2.1",<% } %><% if(permalinks){ %>
     "metalsmith-permalinks": "^0.3.0",<% } %><% if(collections){ %>
     "metalsmith-collections": "^0.1.0",<% } %>
-    "metalsmith": "^0.6.0"
+    "metalsmith": "^0.7.0"
   }
 }
