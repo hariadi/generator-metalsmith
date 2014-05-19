@@ -22,10 +22,10 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
 	  plugins: {
 	    'metalsmith-ignore': '^0.1.2',
 	    'metalsmith-drafts': '^0.0.1',
-	    'metalsmith-templates': '^0.3.0',
+	    'metalsmith-templates': '^0.5.0',
 	    'metalsmith-markdown': '^0.2.1',
-	    'metalsmith-permalinks': '^0.2.2',
-	    'metalsmith-collections': '^0.1.0'
+	    'metalsmith-permalinks': '^0.3.0',
+	    'metalsmith-collections': '^0.4.1'
 	  },
 	  engine: {
 	    swig: '^1.3.2',
