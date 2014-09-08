@@ -10,6 +10,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
     this.on('end', function () {
       this.installDependencies({
         skipInstall: this.options['skip-install'] || this.options.s,
+        bower: false,
         callback: function () {
           this.spawnCommand('make', ['build']);
         }.bind(this)
@@ -64,7 +65,7 @@ var MetalsmithGenerator = yeoman.generators.Base.extend({
       type    : 'input',
       name    : 'msAuthor',
       message : 'Author name',
-      default : this.user.git.username || 'Metal Smith'
+      default : this.user.git.name() || 'Metal Smith'
     }, {
       type    : 'input',
       name    : 'msGithubUser',
