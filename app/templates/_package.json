@@ -16,8 +16,8 @@
     "metalsmith-templates": "^0.5.2",
     "<%= templateEngine %>": "<%= metalsmith.engine[templateEngine] %>",<% } %><% if(markdown){ %>
     "metalsmith-markdown": "^0.2.1",<% } %><% if(permalinks){ %>
-    "metalsmith-permalinks": "^0.3.2",<% } %><% if(collections){ %>
-    "metalsmith-collections": "^0.4.1",<% } %>
-    "metalsmith": "^0.9.0"
+    "metalsmith-permalinks": "^0.4.0",<% } %><% if(collections){ %>
+    "metalsmith-collections": "^0.6.0",<% } %>
+    "metalsmith": "^0.10.0"
   }
 }
