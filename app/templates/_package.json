@@ -6,6 +6,9 @@
     "name": "<%= msAuthor %>",
     "url": "https://github.com/<%= msGithubUser %>"
   },
+  "scripts": {
+    "build": "./node_modules/.bin/metalsmith"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/<%= msGithubUser %>/<%= _.slugify(msTitle) %>"
